@@ -1,0 +1,18 @@
+{
+  "image": "516569236000.dkr.ecr.ap-south-1.amazonaws.com/sample-app:latest",
+  "aws_region": "ap-south-1",
+  "aws_profile": "default",
+  "mode": "mock",
+  "container_port": 8080,
+  "health_check_path": "/health",
+  "required_env_vars": ["DATABASE_URL", "REDIS_URL", "APP_ENV"],
+  "required_dependencies": ["postgres", "redis"],
+  "task_cpu": 512,
+  "task_memory": 1024,
+  "cloudwatch_log_group": "/ecs/sample-app",
+  "task_execution_role_name": "",
+  "alb_health_check_path": "/health",
+  "local_env_file": ".env.sample",
+  "allow_local_container_run": false,
+  "dependency_connectivity_check": false
+}

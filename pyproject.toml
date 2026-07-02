@@ -1,0 +1,25 @@
+[project]
+name = "ecs-deployment-readiness-agent"
+version = "0.1.0"
+description = "Local-first AI-assisted ECS/Fargate deployment readiness validator"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115.6",
+  "uvicorn[standard]>=0.34.0",
+  "pydantic>=2.10.4",
+  "pydantic-settings>=2.7.0",
+  "boto3>=1.35.90",
+  "PyYAML>=6.0.2"
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["backend/tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+
+[tool.black]
+line-length = 120
+target-version = ["py311"]

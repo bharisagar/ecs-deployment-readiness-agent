@@ -1,0 +1,10 @@
+flowchart LR
+    UI["React + Vite UI"] --> API["FastAPI Backend"]
+    CLI["Python CLI"] --> API_CORE["Readiness Orchestrator"]
+    API --> API_CORE
+    API_CORE --> LOCAL["Local Checks\nDocker, env, health, secrets"]
+    API_CORE --> AWS["AWS Read-only Checks\nECR, Logs, IAM, ELBv2"]
+    API_CORE --> SCORE["Scoring Engine"]
+    SCORE --> LLM["Ollama Summary\nRule-based fallback"]
+    LLM --> STORE["Local reports/\nJSON + Markdown"]
+    STORE --> UI

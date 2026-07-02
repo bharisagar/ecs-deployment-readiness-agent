@@ -1,0 +1,111 @@
+﻿{
+  "report_id": "sample-20260702-ecs-readiness",
+  "created_at": "2026-07-02T12:00:00Z",
+  "input": {
+    "image": "516569236000.dkr.ecr.ap-south-1.amazonaws.com/sample-app:latest",
+    "aws_region": "ap-south-1",
+    "aws_profile": "default",
+    "mode": "mock",
+    "container_port": 8080,
+    "health_check_path": "/health",
+    "required_env_vars": ["DATABASE_URL", "REDIS_URL", "APP_ENV"],
+    "required_dependencies": ["postgres", "redis"],
+    "task_cpu": 512,
+    "task_memory": 1024,
+    "cloudwatch_log_group": "/ecs/sample-app",
+    "task_execution_role_name": "",
+    "alb_health_check_path": "/health",
+    "local_env_file": ".env.sample",
+    "allow_local_container_run": false,
+    "dependency_connectivity_check": false,
+    "target_group_arn": null,
+    "project_dir": ".",
+    "dockerfile_path": "Dockerfile",
+    "selected_config_files": []
+  },
+  "checks": [
+    {
+      "name": "Docker Image Exists",
+      "status": "PASS",
+      "severity": "HIGH",
+      "evidence": "Image exists in the mock registry data set.",
+      "recommendation": "Pin production deployments to immutable tags or image digests."
+    },
+    {
+      "name": "Container Port Exposed",
+      "status": "WARN",
+      "severity": "MEDIUM",
+      "evidence": "Image metadata does not declare 8080/tcp.",
+      "recommendation": "Add EXPOSE 8080 or document the container port in the ECS task definition."
+    },
+    {
+      "name": "Health Check Works",
+      "status": "PASS",
+      "severity": "HIGH",
+      "evidence": "Health check /health returned HTTP 200 in mock validation.",
+      "recommendation": "Use the same path in the ALB target group."
+    },
+    {
+      "name": "Required Env Vars Present",
+      "status": "FAIL",
+      "severity": "HIGH",
+      "evidence": "Present variables: REDIS_URL, APP_ENV. Missing variables: DATABASE_URL. Values are not reported.",
+      "recommendation": "Add DATABASE_URL through ECS task configuration or Secrets Manager."
+    },
+    {
+      "name": "Dependencies Documented",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "evidence": "Redis and Postgres dependencies are documented.",
+      "recommendation": "Confirm VPC routing and credentials before deployment."
+    },
+    {
+      "name": "Task CPU/Memory Valid",
+      "status": "PASS",
+      "severity": "HIGH",
+      "evidence": "512 CPU and 1024 MB memory is valid for Fargate.",
+      "recommendation": "Validate sizing with load test data."
+    },
+    {
+      "name": "Secrets Not Hardcoded",
+      "status": "PASS",
+      "severity": "HIGH",
+      "evidence": "No hardcoded secret patterns were found.",
+      "recommendation": "Continue using secret references rather than plaintext values."
+    },
+    {
+      "name": "CloudWatch Log Group Configured",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "evidence": "Log group /ecs/sample-app follows the expected convention.",
+      "recommendation": "Ensure the task definition uses awslogs with this log group."
+    },
+    {
+      "name": "IAM Task Execution Role Valid",
+      "status": "FAIL",
+      "severity": "HIGH",
+      "evidence": "Task execution role name is missing.",
+      "recommendation": "Provide ecsTaskExecutionRole or an equivalent least-privilege execution role."
+    },
+    {
+      "name": "ALB Health Check Path Valid",
+      "status": "PASS",
+      "severity": "MEDIUM",
+      "evidence": "ALB health check path is /health.",
+      "recommendation": "Keep target group and application health paths aligned."
+    }
+  ],
+  "score_summary": {
+    "score": 71.88,
+    "passed": 7,
+    "warnings": 1,
+    "failed": 2,
+    "total": 10,
+    "high_severity_failures": ["Required Env Vars Present", "IAM Task Execution Role Valid"]
+  },
+  "final_status": "NOT_READY",
+  "ai_summary": "Overall deployment readiness: NOT_READY with a score of 71.88%. Top risks are the missing DATABASE_URL and missing task execution role. Fix the high-severity findings before creating an ECS service.",
+  "ai_summary_provider": "rule-based",
+  "ai_summary_warning": "Ollama unavailable, generated rule-based summary."
+}
+
