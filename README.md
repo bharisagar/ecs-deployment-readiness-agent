@@ -78,33 +78,33 @@ flowchart LR
 
 ```text
 ecs-deployment-readiness-agent/
-â”œâ”€â”€ README.md
-â”œâ”€â”€ docker-compose.yml
-â”œâ”€â”€ .env.example
-â”œâ”€â”€ .env.sample
-â”œâ”€â”€ .gitignore
-â”œâ”€â”€ Makefile
-â”œâ”€â”€ pyproject.toml
-â”œâ”€â”€ requirements.txt
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ app/
-â”‚   â”‚   â”œâ”€â”€ main.py
-â”‚   â”‚   â”œâ”€â”€ cli.py
-â”‚   â”‚   â”œâ”€â”€ api/routes.py
-â”‚   â”‚   â”œâ”€â”€ core/
-â”‚   â”‚   â”œâ”€â”€ checks/
-â”‚   â”‚   â”œâ”€â”€ aws/
-â”‚   â”‚   â”œâ”€â”€ llm/
-â”‚   â”‚   â”œâ”€â”€ report/
-â”‚   â”‚   â””â”€â”€ storage/
-â”‚   â””â”€â”€ tests/
-â”œâ”€â”€ frontend/
-â”‚   â”œâ”€â”€ package.json
-â”‚   â”œâ”€â”€ vite.config.js
-â”‚   â””â”€â”€ src/
-â”œâ”€â”€ examples/
-â”œâ”€â”€ docs/
-â””â”€â”€ architecture/
+|-- README.md
+|-- docker-compose.yml
+|-- .env.example
+|-- .env.sample
+|-- .gitignore
+|-- Makefile
+|-- pyproject.toml
+|-- requirements.txt
+|-- backend/
+|   |-- app/
+|   |   |-- main.py
+|   |   |-- cli.py
+|   |   |-- api/routes.py
+|   |   |-- core/
+|   |   |-- checks/
+|   |   |-- aws/
+|   |   |-- llm/
+|   |   |-- report/
+|   |   `-- storage/
+|   `-- tests/
+|-- frontend/
+|   |-- package.json
+|   |-- vite.config.js
+|   `-- src/
+|-- examples/
+|-- docs/
+`-- architecture/
 ```
 
 ## Prerequisites
