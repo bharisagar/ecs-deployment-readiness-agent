@@ -386,6 +386,33 @@ Compose starts only backend and frontend. It does not include Redis or Postgres 
 8. Optional CloudWatch log group screen
 9. Optional IAM role screen
 
+## Screenshot Evidence
+
+The repository includes captured local demo evidence under [`evidence/`](evidence/).
+
+| Screen | Evidence |
+| --- | --- |
+| Local UI dashboard | [View image](evidence/ui-dashboard.png) |
+| New readiness check form | [View image](evidence/new-readiness-check.png) |
+| History page | [View image](evidence/history-page.png) |
+| Backend health endpoint | [View image](evidence/api-health.png) |
+
+### Local UI Dashboard
+
+![Local UI dashboard](evidence/ui-dashboard.png)
+
+### New Readiness Check Form
+
+![New readiness check form](evidence/new-readiness-check.png)
+
+### History Page
+
+![History page](evidence/history-page.png)
+
+### Backend Health Endpoint
+
+![Backend health endpoint](evidence/api-health.png)
+
 ## Interview Explanation
 
 This project demonstrates how I would design a pre-deployment quality gate for ECS/Fargate. It validates the highest-risk runtime assumptions before infrastructure is created: image availability, task sizing, env vars, health checks, logs, IAM execution role, dependency documentation, secret hygiene, and ALB health path alignment.
